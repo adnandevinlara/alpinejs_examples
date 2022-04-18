@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+<h1>Test and HTML</h1>
+
+<div x-data="{body:'<p>this is paragraph</p>'}">
+	<span x-text="body"></span>
+</div>
+
+<div x-data="{body:'<p>this is paragraph</p>'}">
+	<span x-html="body"></span>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clock</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+	
+<body>
+
+	<style type="text/css">
+		[x-cloak] {
+			display: none !important;
+		}
+	</style>
+	
+	<div x-data="{show:false}">
+		<span x-show="show" x-cloak>This is content</span>
+		<button x-on:click="show = true">Show me</button>
+	</div>
+
+</body>	
+</html>

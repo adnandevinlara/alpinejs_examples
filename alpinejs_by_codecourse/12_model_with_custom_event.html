@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Event</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+
+
+<style type="text/css">
+	body{
+		margin: 0px;
+		padding: 0px;
+	}
+	.model_wrapper{
+		
+		position: absolute;
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+		height: 100%;
+		background-color: gray;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.model{
+		width: 100%;
+		max-width: 30%;
+		background-color: #fff;
+		padding: 20px;
+	}
+</style>
+
+
+<div 
+	class="model_wrapper" 
+	x-data="{open:false}"
+	x-show="open"
+	x-on:open-model.window = "open = true"
+	x-on:keyup.escape.window = "open  = false"
+>
+
+<div class="model" x-on:click.outside = "open = false">
+	I'm Model...
+</div>
+	
+</div>
+
+<button x-data x-on:click = "$dispatch('open-model')">Open Model</button>
+
+
+<h4>Sending data with event</h4>
+
+<div x-data="{message:''}" x-on:message.window = "message = $event.detail.message">
+	<span x-text="`${message}`"></span>
+</div>
+
+<!-- <button x-data x-on:click = "$dispatch('message','hello world !')">Set Message</button> -->
+
+<button x-data x-on:click = "$dispatch('message', {message:'Good Morning!',type:'success'})">Set Message</button>
+
+
+</body>
+</html>

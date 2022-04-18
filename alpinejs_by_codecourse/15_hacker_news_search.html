@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Watching</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+	
+<body>
+	<h1>Hacker News Search</h1>
+	
+	<div 
+		x-data="{
+			query:'',
+			results:[],
+			performSearch (query) {
+				fetch(`https://hn.algolia.com/api/v1/search?query=${query}`)
+				.then(response => response.json())
+				.then(results => this.results = results.hits)
+			},
+
+			init () {
+				this.$watch('query', (query) => {
+					if (query === '') {
+						this.results = []
+						return
+					}
+				this.performSearch(query)
+			})
+			}
+		}"
+	>
+		<input type="text" x-model.debounce.400="query">
+		<p x-show="query.length">
+			Your search for <span x-text="query"></span> returned <span x-text="results.length"></span> results.
+		</p>
+		<div>
+		<template x-for="result in results" :key="result.objectID">
+			<div>
+				<h5 x-text="result.title"></h5>
+				<a x-bind:href="result.url" x-text="result.url"></a>	
+			</div>
+			
+		</template>
+	</div>
+
+	</div>
+
+	<div x-data="{open:false}">
+		<button x-on:click="open=!open">toggle</button>
+		<p x-show="open">this is content</p>
+	</div>
+
+</body>	
+</html>

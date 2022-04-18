@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Model Data Binding</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+<h2>Model Data Binding</h2>
+<div x-data="{name : ''}">
+	<input type="text" name="name" x-model="name">
+	<p x-text="'name: '+name"></p>
+	<p x-text="'length: '+name.length"></p>
+
+</div>
+
+<form x-data="{name : ''}" x-on:submit="$event.preventDefault(); console.log(name)">
+	<input type="text"  x-model="name">
+	<button type="submit">submit</button>
+</form>
+
+<!-- 
+we do this
+x-on:submit.prevent="console.log(name)"
+or
+x-on:submit="$event.preventDefault(); console.log(name)"
+when we want to submit form through ajax request and api.
+ -->
+<h2>Two way data binding</h2>
+
+<div x-data="{
+	name : '',
+	toUpperCase () {
+		this.name = this.name.toUpperCase()	
+	}
+}
+">
+	<input type="text"  x-model="name">
+	<span x-text="name"></span>
+	<button x-on:click="toUpperCase">UpperCase</button>
+</div>
+
+</body>
+</html>

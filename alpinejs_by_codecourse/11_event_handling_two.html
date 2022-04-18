@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>visibility</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+
+<h4>Dropdown menu</h4>
+<style type="text/css">
+	.box{
+		width: 300px;
+		height: 400px;
+		background-color: slategray;
+	}
+</style>
+<div x-data={open:false}>
+	<button x-on:click="open=true">Dropdown</button>
+	<div x-show="open" class="box" x-on:click.outside="open=false">
+		menu content..
+	</div>
+</div>
+</body>
+</html>

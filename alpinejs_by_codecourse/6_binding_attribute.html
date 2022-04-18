@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+<h1>Attribute Binding</h1>
+<style type="text/css">
+	.bold{
+		font-weight: bold;
+	}
+	.green{
+		color: green;
+	}
+</style>
+<div x-data="{selected:false}">
+	<span class="" x-bind:class="{'bold':selected,'green':selected}" >I'm Bold</span>
+	<button  x-on:click="selected = !selected">Bold toggle</button>
+</div>
+
+<h3>Disable button by-deafult and enable on fill inout feild</h3>
+
+<form x-data="{name:'',age:''}" x-on:submit.prevent="alert(`Hey ${name}`)">
+	<input type="text" x-model="name">
+	<input type="text" x-model="age">
+	<button type="submit" x-bind:disabled="name === '' && age === ''">submit</button>
+</form>
+
+
+<h4>Progress bar using x-bind</h4>
+
+<div x-data="{progress:5}">
+	<progress x-bind:value="progress" max="100">
+	
+	</progress>
+	<span x-text="`${progress} %`"></span>
+	<button x-on:click="progress = progress + 5">Increment</button>
+</div>
+
+<style type="text/css">
+	.myDesign{
+		color: green,
+		font-weight: bolder;
+		font-size: 14px;
+		font-family: sans-serif;
+		text-transform: uppercase;
+	}
+</style>
+
+<div x-data="{
+	selected:[],
+	people: [
+		{id:1,name:'adnan'},
+		{id:2,name:'zaib'}
+	]
+}"
+>
+<span x-text="selected"></span>
+<template x-for="person in people">
+	<div>
+		<input 
+			type="checkbox"
+			x-bind:value="person.id"
+			x-bind:id="`person_${person.id}`"
+			x-model.number="selected"
+
+
+		 >
+		 <!-- dot . number is a modifire, now we no need to add toString() please checkout the official doc for more -->
+		<!--  <span x-text="person.name" x-bind:class="{'myDesign' : selected.includes(person.id.toString())}"></span> -->
+
+		 <span x-text="person.name" x-bind:class="{'myDesign' : selected.includes(person.id)}"></span>
+	</div>
+</template>
+	
+</div>
+
+
+
+<input type="text" x-ref="content">
+ 
+<button x-on:click="navigator.clipboard.writeText($refs.content.value)">
+  Copy
+</button>
+
+</body>
+</html>

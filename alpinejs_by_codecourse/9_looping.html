@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Looping</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+<h1>Looping</h1>
+<div x-data="{fruits:['Orange','Banana','Apple','PineApple']}">
+	<ol>
+		<template x-for="fruit in fruits">
+			<li x-text="fruit"></li>
+		</template>
+	</ol>
+</div>
+<h4>looping with unique key identifier,check the code.</h4>
+<div x-data="{people:[{id:1,name:'adnan'},{id:2,name:'ali'},{id:3,name:'arsalan'}]}">
+	<ol>
+		<template x-for="person in people" :key="person.id">
+			<li x-text="person.name"></li>
+		</template>
+	</ol>
+</div>
+
+<h4>Sorting with loop</h4>
+<p>Make sure when you iterate thorough some loop, you must specify some unique key identifier.</p>
+<div 
+	x-data="{
+		people:[{id:1,name:'adnan',points:8},{id:2,name:'ali',points:13},{id:3,name:'arsalan',points:10}],
+		increment (id) {
+			this.people.find((p) => p.id === id).points++
+		},
+		get peopleSortedByPoints () {
+			return this.people.sort((a,b) => b.points - a.points)
+		}
+	}"
+>
+	
+		<template x-for="person in peopleSortedByPoints" :key="person.id">
+			<div>
+				<span x-text="`${person.name} have ${person.points} points`"}></span>
+				<button x-on:click="increment(person.id)">increment</button>
+			</div>
+		</template>
+	
+</div>
+
+</body>
+</html>

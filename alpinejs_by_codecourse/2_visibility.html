@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>visibility</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+<!-- hide and show things based on state -->
+<!-- e.g: isOpen ? dropdown,memu-->
+	<div x-data="{visible : true}">
+		<!-- <button @click="visible = !visible">Toggle</button> -->
+		<button x-on:click="visible = !visible">Toggle content</button>
+		<div x-show="visible">
+			Some Content
+		</div>
+	</div>
+
+	<div x-data="{records:[1,2,3,4]}">
+		<div x-show="records.length >= 1">Data exist!</div>
+	</div>
+
+	<div x-data="{number : 0}">
+		<button x-on:click="number++">Increment</button>
+		<div x-text="number">
+		</div>
+		<p x-show="number > 5">Limit cross</p>
+		<button x-on:click="number--">Decrement</button>
+	</div>
+
+</body>
+</html>

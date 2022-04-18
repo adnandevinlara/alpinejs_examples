@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Preview Image</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+	
+<body>
+
+
+<div x-data="{}" x-init="console.log(document.getElementById('greeting'))">
+	<span id="greeting" >Greetings..</span>
+</div>
+
+<p>Instead of doing this abovem, do this</p>
+
+<div x-data="{}" x-init="console.log($refs.greeting)">
+	<span x-ref="greeting" >Greetings using refs..</span>
+</div>
+
+<p>return iobjct which contain many refs</p>
+
+<div x-data="{}" x-init="console.log($refs)">
+	<span x-ref="greeting" >Greetings wishes</span>
+	<span x-ref="greeting" >Greetings wishes again</span>
+</div>
+
+<h4>Image preview</h4>
+
+
+
+<form
+	x-data="{
+		imagePreview: null,
+		previewImage (e) {
+
+			
+			console.log(this.$refs.image.files[0])
+			
+			const reader = new FileReader()
+			<!-- create a file reader javascript instance -->
+			reader.onload = (e) =>this.imagePreview = e.target.result
+
+			reader.readAsDataURL(this.$refs.image.files[0])
+			<!-- get the details of file -->
+		}
+	}"
+>
+	<span x-text="imagePreview"></span>
+	<!-- we wil get image string thata we will directly put into image tag -->
+
+	<!-- now preview the image  -->
+	<template x-if="imagePreview">
+		<div>
+			<img x-bind:src="imagePreview" alt="image" style="width: 200px;">
+		</div>
+	</template>
+
+
+	<input type="file" x-on:change="previewImage" x-ref="image">
+</form>
+
+
+</body>	
+</html>

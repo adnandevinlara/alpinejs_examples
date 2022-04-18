@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Watching</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+	
+<body>
+	<h1>Watching</h1>
+	<p>Watch when an property inside an alpine js component changes.</p>
+	<p>this is the basic of watching</p>
+	<div 
+		x-data = "{
+
+		message: '',
+
+		init () {
+			this.$watch ('message', (value) => {
+				console.log('changed',value)
+			});	
+		}
+
+
+	}"
+	>
+
+	<span x-text="message"></span>
+	<button x-on:click="message = 'something else'">Change text</button>
+
+
+	</div>
+
+
+	<h4>practical Example</h4>
+	<div 
+
+	x-data = "{
+
+		query: '',
+		results: [],
+		performSearch (query) {
+
+			this.results = [
+				'apple','banana','pineapple'
+			],
+		},
+
+		init () {
+			this.$watch('query', (query) => {
+				this.performSearch(query)
+		})
+		}
+
+	}"
+>
+		<span x-text="results"></span>
+		<input type="text" x-model="query" />	
+	</div>
+	
+
+</body>	
+</html>

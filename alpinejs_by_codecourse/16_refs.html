@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>$refs</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+	
+<body>
+	
+	<!-- <div x-data = "{}" x-init="console.log($refs.greeting)"> -->
+		<div x-data = "{}" x-init="console.log($refs)">
+			<span x-ref="greeting">Greetings...</span>
+			<span x-ref="another">Another...</span>
+		</div>
+
+		<div x-data = "{}" x-init="$refs.input.focus()">
+			<input type="text" x-ref="input">
+		</div>
+
+</body>	
+</html>

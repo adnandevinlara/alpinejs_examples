@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+<h1>More Inputs</h1>
+
+<h4>Check Box Values</h4>
+<div x-data="{agreed:false}">
+	<input type="checkbox" x-model="agreed">
+	<span x-text="agreed"></span>
+	<span x-show="agreed">
+		You are agreed..!
+	</span>
+</div>
+
+<h4>Multiple checkboxes</h4>
+
+<div x-data="{ records: [] }">
+	<input type="checkbox" name="record_1" value="1" x-model="records">
+	<input type="checkbox" name="record_2" value="2" x-model="records">
+	<input type="checkbox" name="record_3" value="3" x-model="records">
+	<p>it will return array</p>
+	<span x-text="records"></span>
+</div>
+
+
+<h4>Lets do an example with users</h4>
+
+<form 
+	x-data="{ 
+		users: [],
+		deleteUsers () {
+		<!-- we do user here api to submit data -->
+			console.log(this.users)
+		} 
+	}"
+	x-on:submit.prevent="deleteUsers"
+	>
+	<input type="checkbox" name="record_1" value="1" x-model="users"> Ali
+	<input type="checkbox" name="record_2" value="2" x-model="users"> Adnan
+	<input type="checkbox" name="record_3" value="3" x-model="users"> Asad
+	<p>Check console-log</p>
+	<button type="submit">Submit</button>
+
+	<span x-text="users"></span>
+</form>
+
+<h4>Select Options</h4>
+
+<div x-data="{plan:''}">
+	<select x-model="plan">
+		<option value="">Choose...</option>
+		<option value="Weekly">Weekly</option>
+		<option value="Monthly">Monthly</option>
+		<option value="Yearly">Yearly</option>
+	</select>
+	<span x-show="plan" x-text="`You have choosen the ${plan} plan`"></span>
+</div>
+
+<h4>Radio button</h4>
+<div x-data="{plan:'Monthly'}">
+	<input type="radio" name="plan" value="Monthly" x-model="plan">
+	<input type="radio" name="plan" value="Yearly" x-model="plan">
+	<span x-show="plan" x-text="`You have chosen ${plan} plan.`"></span>
+</div>
+</body>
+</html>

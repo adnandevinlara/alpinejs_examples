@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>$el component</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/marked@2.0.7/lib/marked.min.js"></script>
+</head>
+<body>
+	<h1>$el magic property</h1>
+	<p>$el magic property references the current component on which it is on.</p>
+
+	<p>it give( return ) you the current element back, Check console.log</p>
+	<textarea x-data x-init = "console.log($el)">
+		
+	</textarea>
+
+
+	<h4>Example: Instance markdown outputer</h4>
+
+	<div x-data x-init = "$el.innerHTML = marked($el.innerText)">
+		This is **markdown**
+	</div>
+
+	<h4>Element on page we can copy and paste just clicking on it.</h4>
+
+	<div x-data x-on:click="window.navigator.clipboard.writeText($el.innerText)">
+		this is chair..!
+	</div>
+	<!-- natively with javascript window.navigator.clipboard
+	 and we are going to write some text .writeText()
+	 and from this element .writeText($el.innerText)  -->
+
+	 <h4>Copy the value on input feild on click</h4>
+	 <input type="text" value="213124376" x-data x-on:click="window.navigator.clipboard.writeText($el.value); $el.select()" >
+</body>
+</html>

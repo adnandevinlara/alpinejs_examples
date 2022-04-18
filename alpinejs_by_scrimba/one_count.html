@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alpine js</title>
+</head>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<body>
+<div class="" x-data="{count:0}" x-init="count = $refs.countme.value.length">
+	<textarea name="body" class="char-limiter" row="3" maxlength="40" x-ref="countme" x-on:keyup="count = $refs.countme.value.length"></textarea>
+	<div>
+		<span x-html="count"></span> /
+		<span x-html="$refs.countme.maxLength"></span>
+	</div>
+</div>
+
+
+x-data directive define that is element or dive is goin to be the component od alpine js.
+
+and div directive scope is inside that compound. 
+
+<div x-data="{name:'Adnan',nickname:'rohaan',email:'adnanzaib@gmail.com', age:27}">
+	<div>Name: <b x-text="name"></b></div>
+	<div>Nick Name: <b x-text="nickname"></b></div>
+	<div>Email: <b x-text="email"></b></div>
+	<div>Age: <b x-text="age"></b></div>
+</div>
+<p>all data in x-data directive only be accessible insode the element.Not outside of the component.
+<br> What did we just do here? We added a nickname property to the component scope. Then, we tried to access it(nickname) outside the component scope
+</p>
+<div>Nick Name: <b x-text="nickname"></b></div>
+
+
+<div x-data="init()">
+
+  <div>Name:<span x-text="name"></span></div>
+
+  <button @click="setName('al')">Set Name</button>
+  <button @click="setLastName('zaib')">Set Name2</button>
+
+</div>
+
+
+
+<script>
+
+	
+  function init() {
+
+    return {
+
+      name: "",
+
+
+      setName: function (name) {
+
+        this.name = name;
+
+      },
+
+      setLastName: function (name){
+      	this.name = name;
+      },
+
+    };
+
+  }
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+<h1>Search image using Api</h1>
+
+<div
+	x-data="{
+		
+		query:'',
+		img:'',
+		getImage () {
+			this.img = `https://source.unsplash.com/1600x900/?${this.query}`;
+		}
+
+	}"
+>
+
+<form x-on:submit.prevent="getImage">
+
+<input type="test" x-model="query">
+<button type="submit">Search</button>
+<span x-text="img"></span>
+
+
+</form>
+<!-- here we are binding attribute with alipne element -->
+<div x-show="img">
+	<img  x-bind:src="img" style="width: 300px; height: 300px;">	
+</div>	
+</div>
+
+
+
+</body>
+</html>

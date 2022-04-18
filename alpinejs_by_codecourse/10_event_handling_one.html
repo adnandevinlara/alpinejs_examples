@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>visibility</title>
+	<script defer src="https://unpkg.com/alpinejs@3.9.5/dist/cdn.min.js"></script>
+</head>
+<body>
+
+<h1>Event Handling</h1>
+
+<form x-data x-on:submit.prevent="console.log('submitted')">
+
+	<textarea
+		cols="30"
+
+		rows="5"
+
+		x-data
+
+		x-on:keyup.enter = "$el.closest('form').dispatchEvent(new Event('submit'))"
+	>
+		
+	</textarea>
+	
+</form>
+
+<!-- write inside the textarea -->
+<!-- 
+	x-on:keyup = "if($event.code === 'Enter') { console.log('submit') }"
+	x-on:keyup.enter = "console.log('submit') "
+	
+
+	//it will cal the closest element of form
+	x-on:keyup.enter = "$el.closest('form').dispatchEvent(new Event('submit'))"
+	
+ -->
+
+<h4>Onshift get to new line also disabled to enter the form</h4>
+<p>Get new line on Shift+Enter and submit from on click Enter</p>
+ <form x-data x-on:submit.prevent="console.log('submitted')">
+
+	<textarea
+		cols="30"
+
+		rows="5"
+
+		x-data="{shiftHeld : false}"
+		x-on:keydown.shift="shiftHeld = true"
+		x-on:keyup.shift="shiftHeld = false"
+
+		x-on:keyup.enter = " if(!shiftHeld) { $el.closest('form').dispatchEvent(new Event('submit')) }"
+	>
+		
+	</textarea>
+	
+</form>
+
+
+</body>
+</html>
